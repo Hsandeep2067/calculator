@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        body{
+            font-family: sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        div{
+            margin: auto;
+            width: 50%;
+            border: 3px solid rgb(0, 231, 0);
+            padding: 10px;
+        }
+
+        h2{
+            color: rgb(0, 231, 0);
+        }
+
+        form{
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label{
+            margin: 5px 0;
+            color: black;
+        }
+        input,button{
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            border: rgb(0, 231, 0) solid 2px;
+        }
+        button{
+            cursor: pointer;
+            background-color: rgb(0, 231, 0);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            
+        }
+
+        button:hover{
+            background-color: rgb(102, 211, 7);
+        }
+
+        #answer{
+            margin-top: 10px;
+        }
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+    <div>
+        <h2>Calculator</h2>
+
+        <form id="CalculatorForm">
+            <label for="number1">Number 1:</label>
+            <input type="number" name="" id="number1" required>
+            <br>
+
+            <label for="number2">Number 2:</label>
+            <input type="number" name="" id="number2" required>
+            <br>
+
+            <button type="button" onclick="add()">+</button>
+            <button type="button" onclick="subtract()">-</button>
+            <button type="button" onclick="multiply()">*</button>
+            <button type="button" onclick="divide()">/</button>
+            <br>
+
+            <label for="answer">Answer:</label>
+            <input type="text" name="" id="answer" readonly>
+
+        </form>
+    </div>
+
+    <script>
+        function add(){
+            calculate('add');
+        }
+
+        function subtract(){
+            calculate('subtract');
+        }
+        function multiply(){
+            calculate('multiply');
+        }
+        function divide(){
+            calculate('divide');
+        }
+
+        function calculate(operation){
+            var num1 = parseFloat(document.getElementById('number1').value);
+            var num2 = parseFloat(document.getElementById('number2').value);
+
+            if(isNaN(num1) || isNaN(num2)){
+                alert("Please enter a valid number");
+                return;
+            }
+
+            var answer;
+            switch(operation){
+
+                case 'add':
+                    answer = num1 + num2;
+                    break;
+                
+                case 'subtract':
+                    answer = num1 - num2;
+                    break;
+
+                case 'multiply':
+                    answer = num1 * num2;
+                    break;
+
+                case 'divide':
+                    if(num2!==0){
+                    answer = num1 / num2;
+                    }
+                    else{
+                        alert("Cannot divide by zero");
+                        return;
+                    }
+                    break;
+
+                default:
+                    alert("Invalid operation");
+                    return;
+            }
+
+            document.getElementById('answer').value = answer;
+        }
+    </script>
+
+    
+</body>
+</html>
